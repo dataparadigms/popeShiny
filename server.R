@@ -7,6 +7,7 @@ library(shiny)
 library(lubridate)
 library(ggplot2)
 library(scales)
+library(RColorBrewer)
 
 # do the nessecary data mungling,  this step will take a bit to initialize
 stream <- read.csv("http://www.procrun.com/popeOdds/output.csv",
@@ -31,15 +32,18 @@ condensed <- condensed[with(condensed, order(candidate, x)),]
 ranked <- condensed[as.double(condensed$x) == as.double(max(condensed$x)), ]
 ranked$rank <- rank(-ranked$y, ties.method = "min")
 ranked <- ranked[with(ranked, order(rank)),]
+ranked <- ranked[ranked$rank <= 10, ]
 
 # merge back
-condensed <- merge(condensed, ranked[, c(1,4)], by = c("candidate"), all.x=TRUE)
+condensed <- merge(condensed, ranked[, c(1,4)], by = c("candidate"))
+candidateColors <- brewer.pal(12, "Paired")
+names(candidateColors) <- levels(factor(condensed$candidate))
 
 shinyServer(function(input, output) {
 
   # reactive to the slide to pull the the top n ranks
   sliderValues <- reactive({
-    condensed[condensed$rank <= input$rank,]
+    temp <- subset(condensed, rank <= input$rank)
   })
 
   # show the values using an html table
@@ -55,7 +59,7 @@ shinyServer(function(input, output) {
     p <- p + geom_line(aes(colour = candidate)) +
           theme_bw() +
           scale_y_continuous(breaks = seq(0,1,.05)) +
-          scale_color_brewer(palette = "Paired") + 
+          scale_color_manual(name = "candidate", values = candidateColors) + 
           labs(title = 'Probability of Being the Next Pope',
                x = '',
                y = '') +

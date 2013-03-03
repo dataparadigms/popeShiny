@@ -79,10 +79,6 @@ shinyServer(function(input, output) {
     temp <- subset(options, rank <= input$rank)
   })
 
-  # updates the data based on user check box
-  #
-  # TODO
-
   # render plot to pass the ggplot back to the ui.R
   output$ggplot <- renderPlot({
     # set stable temp df so the max function doesn't force a function recall

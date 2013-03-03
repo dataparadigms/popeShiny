@@ -1,6 +1,10 @@
 # History files
 .Rhistory
 
+# anything that has a dot starting with it
+.DS_Store
+.Rproj
+
 # Example code in package build process
 *-Ex.R
 .Rproj.user

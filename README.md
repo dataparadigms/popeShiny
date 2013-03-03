@@ -22,20 +22,20 @@ Type either of the following options into your R console.
 
 ```r
 library(shiny)
-runGitHub("popeShinyApp", "dataparadigms")
+runGitHub("popeShiny", "dataparadigms")
 ```
 or
 
 ```r
 library(shiny)
-runUrl('https://github.com/dataparadigms/popeShinyApp/archive/master.tar.gz')
+runUrl('https://github.com/dataparadigms/popeShiny/archive/master.tar.gz')
 ```
 
 ##### Alternatively:
 Clone the directory
 
 ```bash
-git clone https://github.com/dataparadigms/popeShinyApp.git 
+git clone https://github.com/dataparadigms/popeShiny.git 
 ```
 
 Fire up the R console and type

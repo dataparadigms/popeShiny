@@ -7,7 +7,9 @@ Probabilites are based on odds scrapped from a large online bookmaker and update
 
 ##### Live Demo:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**COMING SOON!**
+[http://glimmer.rstudio.com/dataparadigm/pope/](http://glimmer.rstudio.com/dataparadigm/pope/)
+
+Note: username limits left the s of dataparadigms
 
 ##### How to run locally:
 Download and install [R (free software environment for statistical computing and graphics)](http://www.r-project.org/)

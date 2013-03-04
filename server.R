@@ -60,7 +60,7 @@ setColors <- function(df){
   # returns:
   #   vector of colors and corresponding name
 
-  colors <- rev(brewer.pal(10, "Spectral"))
+  colors <- rev(brewer.pal(12, "Set3"))
   names(colors) <- levels(factor(df$candidate))
   
   return(colors)

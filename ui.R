@@ -25,7 +25,7 @@ shinyUI(bootstrapPage(
       sliderInput("rank", 
       "Top N Candidates:",
       min = 1,
-      max = 10,
+      max = 15,
       value = 1)
     )
   )

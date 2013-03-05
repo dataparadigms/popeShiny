@@ -43,7 +43,7 @@ loadData <- function(){
   ranked <- condensed[as.double(condensed$x) == as.double(max(condensed$x)), ]
   ranked$rank <- rank(-ranked$y, ties.method = "min")
   ranked <- ranked[with(ranked, order(rank)),]
-  ranked <- ranked[ranked$rank <= 10, ]
+  ranked <- ranked[ranked$rank <= 15, ]
 
   # merge back
   condensed <- merge(condensed, ranked[, c(1,4)], by = c("candidate"))
@@ -60,7 +60,7 @@ setColors <- function(df){
   # returns:
   #   vector of colors and corresponding name
 
-  colors <- rev(brewer.pal(12, "Set3"))
+  colors <- c(rev(brewer.pal(12, "Set3")), brewer.pal(10, "RdBu"))
   names(colors) <- levels(factor(df$candidate))
   
   return(colors)

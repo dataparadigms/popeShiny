@@ -43,8 +43,21 @@ loadData <- function(){
   ranked <- condensed[as.double(condensed$x) == as.double(max(condensed$x)), ]
   ranked$rank <- rank(-ranked$y, ties.method = "max")
   ranked <- ranked[with(ranked, order(rank)),]
-  ranked <- ranked[ranked$rank <= 15, ]
+  ranked <- ranked[ranked$rank <= 1, ]
 
+  # on the day the conclave concludes,  should show convergence to Pope by elected and 
+  # the decline on the odds for the front runners over time.
+  if (nrow(ranked) <= 1) {
+
+    rankedInitial <- condensed[as.double(condensed$x) == as.double(min(condensed$x)), ]
+    rankedInitial <- rankedInitial[!(rankedInitial$candidate %in% unique(ranked$candidate)), ]
+    rankedInitial$rank <- rank(-rankedInitial$y, ties.method = "max")
+    rankedInitial$rank <- rankedInitial$rank + 1
+    rankedInitial <- rankedInitial[with(rankedInitial, order(rank)),]
+    rankedInitial <- rankedInitial[rankedInitial$rank <= 15, ]
+    ranked <- rbind(ranked, rankedInitial)
+  }
+  
   # merge back
   condensed <- merge(condensed, ranked[, c(1,4)], by = c("candidate"))
   return(condensed)
@@ -60,9 +73,8 @@ setColors <- function(df){
   # returns:
   #   vector of colors and corresponding name
 
-  colors <- c(rev(brewer.pal(12, "Set3")), brewer.pal(10, "RdBu"))
+  colors <- c(brewer.pal(12, "Set3"), brewer.pal(10, "RdBu"))
   names(colors) <- levels(factor(df$candidate))
-  
   return(colors)
 }
 

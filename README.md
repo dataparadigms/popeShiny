@@ -50,3 +50,12 @@ source('launch.R')
 ##### Questions?
 - twitter: [datapardigms](https://twitter.com/dataparadigms)
 - web: [http://www.dataparadigms.com](http://www.dataparadigms.com)
+
+
+##### Disclaimers 
+- The probabilities are based on odds published by an online bookmaker.  In no way, shape, or form is this an attestation nor algorithmic prediction of who the next Pope will be.   
+- The house ALWAYS wins.  
+- The odds are developed by the bookmaker as they see fit, this information is not released to the general public (you and I).  
+- I do not claim to have any domain specific knowledge related to the Catholic Church.  
+- Be skeptical of any use other than monitoring the changes in the odds over time.  
+

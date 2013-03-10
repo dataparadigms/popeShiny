@@ -41,7 +41,7 @@ loadData <- function(){
 
   # rank for the max time
   ranked <- condensed[as.double(condensed$x) == as.double(max(condensed$x)), ]
-  ranked$rank <- rank(-ranked$y, ties.method = "min")
+  ranked$rank <- rank(-ranked$y, ties.method = "max")
   ranked <- ranked[with(ranked, order(rank)),]
   ranked <- ranked[ranked$rank <= 15, ]
 

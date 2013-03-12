@@ -43,7 +43,7 @@ loadData <- function(){
   ranked <- condensed[as.double(condensed$x) == as.double(max(condensed$x)), ]
   ranked$rank <- rank(-ranked$y, ties.method = "max")
   ranked <- ranked[with(ranked, order(rank)),]
-  ranked <- ranked[ranked$rank <= 1, ]
+  ranked <- ranked[ranked$rank <= 15, ]
 
   # on the day the conclave concludes,  should show convergence to Pope by elected and 
   # the decline on the odds for the front runners over time.

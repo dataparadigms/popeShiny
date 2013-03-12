@@ -9,6 +9,7 @@
 #  has been set to the directory where this file is
 
 library(shiny)
+setwd("~/Documents/code/popeShiny")
 runApp(getwd())
 
 

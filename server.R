@@ -12,6 +12,7 @@ library(lubridate)
 library(ggplot2)
 library(scales)
 library(RColorBrewer)
+library(RCurl)
 
 loadData <- function(){
   # loads the most recent odds, on load and then when user chooses to. 
@@ -19,9 +20,12 @@ loadData <- function(){
   # returns:
   #   munged data.frame needed for the server
 
-  # temporary server for data file to prevent overflow on static site
+  # pull file from the github repo
 
-  stream <- read.csv("http://www.procrun.com/popeOdds/output.csv",
+  githubCSV <- getURL("https://raw.github.com/dataparadigms/popeShiny/master/popeOdds_2013.csv")
+  
+
+  stream <- read.csv(text = githubCSV,
                    as.is = TRUE,
                    header = FALSE)
   colnames(stream) <- c("x", "title", "name", "country", "odds", "y")
@@ -101,7 +105,7 @@ shinyServer(function(input, output) {
 
     p <- p + geom_line(aes(colour = candidate), size = 1.25) +
           theme_bw() +
-          scale_y_continuous(breaks = seq(0,1,.05)) +
+          scale_y_continuous(breaks = seq(0,1,.1)) +
           scale_color_manual(name = "candidate", values = candidateColors) + 
           labs(title = 'Probability of Being the Next Pope',
                x = '',
